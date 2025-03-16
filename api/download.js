@@ -1,5 +1,4 @@
-const axios = require('axios');
-const instagramUrlDirect = require('instagram-url-direct');
+const instagramGetUrl = require("instagram-url-direct");
 
 module.exports = async (req, res) => {
     const { url } = req.query;
@@ -9,7 +8,8 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const result = await instagramUrlDirect(url);
+        const result = await instagramGetUrl(url);
+
         if (!result || !result.url_list || result.url_list.length === 0) {
             return res.status(404).json({ error: "No media found" });
         }
